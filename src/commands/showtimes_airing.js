@@ -1,14 +1,10 @@
 import debug from 'debug';
 import fetch from 'node-fetch';
+import config from './../../config';
 import { Command } from './command.js';
 import moment from 'moment';
-import { exactDate } from '../modules/dates';
 
 const log = debug('Airing');
-
-const SHOWTIMES = {
-  SERVER: process.env.SHOWTIMES_SERVER,
-};
 
 export class ShowtimesAiring extends Command {
   message(from, to, text) {
@@ -29,7 +25,7 @@ export class ShowtimesAiring extends Command {
   }
 
   airingRequest(channel) {
-    const uri = `${SHOWTIMES.SERVER}/shows.json?irc=${encodeURIComponent(channel)}`;
+    const uri = `${config.showtimes.server}/shows.json?irc=${encodeURIComponent(channel)}`;
     return fetch(uri).then(response => {
       if (response.ok) {
         return response.json().then(data => this.createMessage(data));
@@ -50,8 +46,8 @@ export class ShowtimesAiring extends Command {
     let message = 'Air dates: ';
 
     json.shows.forEach(show => {
-      const date = exactDate(moment(new Date(show.air_date)));
-      message += `${show.name} #${show.episode_number} airs in ${date}, `;
+      const date = moment(new Date(show.air_date)).fromNow();
+      message += `${show.name} #${show.episode_number} airs ${date}, `;
     });
 
     return message.slice(0, -2);

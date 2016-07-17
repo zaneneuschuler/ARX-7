@@ -1,5 +1,6 @@
 import debug from 'debug';
 import fetch from 'node-fetch';
+import config from './../../config';
 import { Command } from './command.js';
 import { addCommas } from '../modules/number_helpers.js';
 
@@ -44,7 +45,7 @@ export class Youtube extends Command {
 
   info(id) {
     const uri = `https://www.googleapis.com/youtube/v3/videos` +
-                `?id=${id}&alt=json&key=${process.env.YOUTUBE}` +
+                `?id=${id}&alt=json&key=${config.keys.youtube}` +
                 `&fields=items(id,snippet(channelId,title),contentDetails,statistics)` +
                 `&part=snippet,statistics,contentDetails`;
 
@@ -59,7 +60,7 @@ export class Youtube extends Command {
 
             const video = {
               title: data.items[0].snippet.title,
-              // time: moment.duration(data.items[0].contentDetails.duration),
+              //time: moment.duration(data.items[0].contentDetails.duration),
               views: addCommas(data.items[0].statistics.viewCount),
             };
 
@@ -83,7 +84,7 @@ export class Youtube extends Command {
   search(title) {
     const uri = `https://www.googleapis.com/youtube/v3/search?part=snippet` +
                 `&q=${encodeURIComponent(title.trim())}` +
-                `&key=${process.env.YOUTUBE}`;
+                `&key=${config.keys.youtube}`;
 
     return fetch(uri).then(response => {
       if (response.ok) {

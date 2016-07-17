@@ -1,14 +1,11 @@
 import debug from 'debug';
 import fetch from 'node-fetch';
+import config from './../../config';
 import { Command } from './command.js';
 import colors from 'irc-colors';
 import moment from 'moment';
 
 const log = debug('Blame');
-const SHOWTIMES = {
-  SERVER: process.env.SHOWTIMES_SERVER,
-  KEY: process.env.SHOWTIMES_KEY,
-};
 
 export class ShowtimesBlame extends Command {
   message(from, to, text) {
@@ -34,7 +31,7 @@ export class ShowtimesBlame extends Command {
   blameRequest(from, to, show, useNames = false) {
     log(`Blame request by ${from} in ${to} for ${show}`);
 
-    let uri = `${SHOWTIMES.SERVER}/blame.json?`;
+    let uri = `${config.showtimes.server}/blame.json?`;
     uri += `irc=${encodeURIComponent(to)}`;
     uri += `&show=${encodeURIComponent(show.trim())}`;
 
@@ -66,7 +63,7 @@ export class ShowtimesBlame extends Command {
       // Pending takes precedence
       if (staff.finished && !status.has(staff.acronym)) {
         status.set(staff.acronym, colors.bold.green(staff.acronym));
-      } else if (!staff.finished) {
+      } else {
         status.set(staff.acronym, colors.bold.red(staff.acronym));
 
         if (job === 'release') {

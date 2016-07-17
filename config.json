@@ -1,52 +1,39 @@
 {
-  "name": "ARX-7",
-  "userName": "chidori",
-  "server": "irc.rizon.net",
-  "mode": null,
-  "floodProtectionDelay": 500,
+  "name": "IdiotServ",
+  "password": "irule1",
+  "userName": "zaneserv",
+  "server": "irc.gamesurge.net",
+  "mode": "x",
+  "floodProtectionDelay": 1500,
+  "port": 6667,
   "ssl": false,
-  "allowInvalidSSL": true,
-  "admins": ["Desch", "Jukey", "Fyurie"],
+  "allowInvalidSSL": false,
+  "commands": "/msg authserv@services.gamesurge.net zaneserv irule1",
+  "admins": ["terriakijerky"],
+  "showtimes": {
+    "server": "http://localhost:3000",
+    "key": "secretpassword"
+  },
   "channels": [
     {
-      "name": "#arx-7"
+      "name": "#bannerhero"
     },
     {
-      "name": "#gjm-dev"
-    },
-    {
-      "name": "#commie-subs",
+      "name": "#",
+      "key": "key",
       "plugins": [
         "choose",
-        "imgur",
-        "order",
-        "reply",
-        "same",
-        "time",
-        "twitter",
-        "youtube"
+        "order"
       ]
-    },
-    {
-      "name": "#goodjob",
-      "plugins": [
-        "choose",
-        "eightball",
-        "imgur",
-        "order",
-        "reply",
-        "same",
-        "showtimesairing",
-        "showtimesblame",
-        "showtimesnext",
-        "time",
-        "twitter",
-        "youtube"
-      ]
-    },
-    {
-      "name": "#goodjobclub",
-      "key": true
     }
-  ]
+  ],
+  "keys": {
+    "youtube": "AIzaSyCswiW9G7ONkYuo-vkHeWOQVN35ffz6E2Y",
+    "twitter_consumer": "gozMS3DbLcTNm2453CkiCpioG",
+    "twitter_consumer_secret": "DGjL5QPkIF1nZHCsnxJoqjyBHgBVxyNvcOmWgJTtsvXpn2KMyQ",
+    "twitter_access_token": "60771023-9vysTbvfxK3ik5DVLxBfmWC0mJ6Jvh5UcczmZjzzo",
+    "twitter_access_token_secret": "c6X0Nsr0nL6ySkB5gm1mwoczK0j9UaWHV1vUzMnjymzrp",
+    "imgur_client": "client_key",
+    "imgur_secret": "secret_key"
+  }
 }

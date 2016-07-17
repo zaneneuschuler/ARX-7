@@ -2,19 +2,22 @@ import debug from 'debug';
 import pkg from '../package';
 
 import { Choose } from './commands/choose.js';
-import { Eightball } from './commands/eightball.js';
+import { Sevenball} from './commands/7ball.js';
+import { Touhou } from './commands/touhou.js';
+import { Random } from './commands/random.js';
+import { Quotes } from './commands/quotes.js';
 import { Imgur } from './commands/imgur.js';
 import { Order } from './commands/order.js';
 import { Reply } from './commands/reply.js';
 import { Same } from './commands/same.js';
-import { ShowtimesAiring } from './commands/showtimes_airing.js';
 import { ShowtimesBlame } from './commands/showtimes_blame.js';
-import { ShowtimesNext } from './commands/showtimes_next.js';
 import { ShowtimesRelease } from './commands/showtimes_release.js';
-import { ShowtimesStaff } from './commands/showtimes_staff.js';
+import { ShowtimesStatus } from './commands/showtimes_status.js';
 import { Time } from './commands/time.js';
 import { Twitter } from './commands/twitter.js';
 import { Youtube } from './commands/youtube.js';
+import { Anime } from './commands/anime.js';
+import { Nep } from './commands/nep.js';
 
 const log = debug('ARX-7');
 
@@ -25,19 +28,22 @@ export class ARX7 {
   constructor(client, config) {
     this.commands = [
       new Choose(client),
-      new Eightball(client),
+      new Sevenball(client),
+      new Touhou(client),
+      new Random(client),
+      new Quotes(client),
       new Imgur(client),
       new Order(client),
       new Reply(client),
       new Same(client),
-      new ShowtimesAiring(client),
       new ShowtimesBlame(client),
-      new ShowtimesNext(client),
       new ShowtimesRelease(client, this.isAuthorized),
-      new ShowtimesStaff(client, this.isAuthorized),
+      new ShowtimesStatus(client, this.isAuthorized),
       new Time(client),
       new Twitter(client),
       new Youtube(client),
+      new Anime(client),
+      new Nep(client),
     ];
 
     this.client = client;
@@ -54,8 +60,6 @@ export class ARX7 {
 
       if (channel.key === undefined) {
         channel.key = null;
-      } else {
-        channel.key = process.env[channel.name.substr(1).toUpperCase()];
       }
 
       if (channel.plugins === undefined) {
@@ -72,7 +76,7 @@ export class ARX7 {
 
   connect() {
     log('Connected to Server');
-    this.client.say('NickServ', `identify ${process.env.ARX7_PASS}`);
+    this.client.say('AuthServ@services.gamesurge.net', `identify ${this.config.userName} ${this.config.password}`);
     log('Identified');
 
     if (this.config.mode) {

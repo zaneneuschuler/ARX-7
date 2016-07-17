@@ -6,18 +6,21 @@ export class Command {
   constructor(client) {
     this.client = client;
     this.wholeWordBlacklist = [
-      'xd',
+      '!ruels',
+      'S ˙͜ >˙ A ˙͜ >˙ L ˙͜ >˙ S ˙͜ >˙ A',
+      '!random',
+      '!2hu',
+      '!anime',
+      '!nep',
     ];
 
     this.blacklist = [
-      '.ly',
-      '!loli',
-      '!sw',
-      '!fish',
-      '.lewd',
-      'cooldudeirc',
-      'valbot',
-      'ciao',
+      '!ruels',
+      'S ˙͜ >˙ A ˙͜ >˙ L ˙͜ >˙ S ˙͜ >˙ A',
+      '!random',
+      '!2hu',
+      '!anime',
+      '!nep',
     ];
   }
 
@@ -32,7 +35,7 @@ export class Command {
 
   send(to, text) {
     if (this.checkBlacklist(text)) {
-      this.client.say(to, 'Blacklist triggered.');
+      this.client.say(to, 'STOP SPAMMING COMMANDS YOU FUCKS');
     } else {
       this.client.say(to, text);
     }

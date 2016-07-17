@@ -2,7 +2,7 @@
 node_modules/
 
 # Don't want Bot Password
-.env
+config.json
 
 # Log files
 npm-debug.log
