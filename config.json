@@ -8,7 +8,7 @@
   "port": 6667,
   "ssl": false,
   "allowInvalidSSL": false,
-  "commands": "/msg authserv@services.gamesurge.net zaneserv irule1",
+  "commands": "/msg authserv@services.gamesurge.net zaneserv [CAN'T SHOW THAT IN A CHRISTIAN MANGA]",
   "admins": ["terriakijerky"],
   "showtimes": {
     "server": "http://localhost:3000",
